@@ -23,15 +23,10 @@ function updateCountdown() {
   }
 
   const totalSeconds = Math.floor(remaining / 1000);
-  const days = Math.floor(totalSeconds / 86400);
-  const hours = Math.floor((totalSeconds % 86400) / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  fields.days.textContent = new Intl.NumberFormat("ar-DZ").format(days);
-  fields.hours.textContent = formatNumber(hours);
-  fields.minutes.textContent = formatNumber(minutes);
-  fields.seconds.textContent = formatNumber(seconds);
+  fields.days.textContent = new Intl.NumberFormat("ar-DZ").format(Math.floor(totalSeconds / 86400));
+  fields.hours.textContent = formatNumber(Math.floor((totalSeconds % 86400) / 3600));
+  fields.minutes.textContent = formatNumber(Math.floor((totalSeconds % 3600) / 60));
+  fields.seconds.textContent = formatNumber(totalSeconds % 60);
 }
 
 updateCountdown();
@@ -43,14 +38,17 @@ const revealItems = document.querySelectorAll(".reveal");
 if (reduceMotion || !("IntersectionObserver" in window)) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 } else {
-  const observer = new IntersectionObserver((entries) => {
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
+      entry.target.classList.toggle("is-visible", entry.isIntersecting);
     });
-  }, { threshold: 0.15 });
+  }, {
+    threshold: 0.16,
+    rootMargin: "0px 0px -6% 0px",
+  });
 
-  revealItems.forEach((item) => observer.observe(item));
+  revealItems.forEach((item, index) => {
+    item.style.setProperty("--reveal-delay", `${(index % 4) * 70}ms`);
+    revealObserver.observe(item);
+  });
 }
