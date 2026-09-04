@@ -10,10 +10,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <noscript><style>.invitation-gate{display:none!important}body{overflow:auto!important}</style></noscript>
 </head>
 
-<body>
-  <main>
+<body class="invitation-locked">
+  <div class="invitation-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="invitation-gate__panel invitation-gate__panel--left" aria-hidden="true"></div>
+    <div class="invitation-gate__panel invitation-gate__panel--right" aria-hidden="true"></div>
+    <img class="invitation-gate__botanical" src="assets/olive-botanical-frame.png" alt="" aria-hidden="true" />
+
+    <button class="invitation-gate__button" type="button" aria-label="فتح دعوة زفاف لينة ومالك">
+      <span class="invitation-gate__eyebrow">دعوة زفاف</span>
+      <span class="invitation-gate__ornament" aria-hidden="true">✦</span>
+      <span class="invitation-gate__names" id="gate-title">
+        <span>لينة</span>
+        <i aria-hidden="true">♡</i>
+        <span>مالك</span>
+      </span>
+      <span class="invitation-gate__open">اضغطوا لفتح الدعوة</span>
+    </button>
+  </div>
+
+  <main id="invitation-content" tabindex="-1">
     <section class="hero" aria-labelledby="wedding-title">
       <img class="hero__botanical" src="assets/olive-botanical-frame.png" alt="" aria-hidden="true" />
       <span class="hero__glow hero__glow--one" aria-hidden="true"></span>
@@ -38,9 +56,9 @@
         </p>
 
         <h1 class="hero__names reveal" id="wedding-title">
-          <span>لينة</span>
+          <span class="hero__name hero__name--lina">لينة</span>
           <span class="hero__heart" aria-hidden="true">♡</span>
-          <span>مالك</span>
+          <span class="hero__name hero__name--malek">مالك</span>
         </h1>
 
         <p class="hero__announcement reveal">

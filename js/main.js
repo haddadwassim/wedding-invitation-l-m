@@ -33,6 +33,28 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const invitationGate = document.querySelector(".invitation-gate");
+const invitationButton = document.querySelector(".invitation-gate__button");
+const invitationContent = document.querySelector("#invitation-content");
+
+function openInvitation() {
+  if (invitationGate.classList.contains("is-opening")) return;
+
+  invitationGate.classList.add("is-opening");
+  invitationGate.setAttribute("aria-hidden", "true");
+
+  window.setTimeout(() => {
+    invitationGate.hidden = true;
+    document.body.classList.remove("invitation-locked");
+    invitationContent.focus({ preventScroll: true });
+  }, reduceMotion ? 20 : 1080);
+}
+
+invitationButton.addEventListener("click", openInvitation);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !invitationGate.hidden) openInvitation();
+});
+
 const revealItems = document.querySelectorAll(".reveal");
 
 if (reduceMotion || !("IntersectionObserver" in window)) {
