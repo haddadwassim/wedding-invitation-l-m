@@ -51,26 +51,14 @@ a { color: inherit; }
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: transparent;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(183, 148, 85, 0.22), transparent 34%),
+    var(--olive-deep);
   isolation: isolate;
+  transition: opacity 500ms ease, visibility 500ms ease;
 }
 
 .invitation-gate[hidden] { display: none; }
-
-.invitation-gate__panel {
-  position: absolute;
-  z-index: -2;
-  top: 0;
-  bottom: 0;
-  width: 50.5%;
-  background:
-    linear-gradient(145deg, rgba(183, 148, 85, 0.14), transparent 36%),
-    var(--olive-deep);
-  transition: transform 1.05s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.invitation-gate__panel--left { left: 0; }
-.invitation-gate__panel--right { right: 0; }
 
 .invitation-gate::before,
 .invitation-gate::after {
@@ -93,58 +81,81 @@ a { color: inherit; }
 
 .invitation-gate__botanical {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.48;
+  opacity: 0.28;
   filter: saturate(1.05) contrast(1.05);
   pointer-events: none;
-  transition: opacity 500ms ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 750ms ease, transform 1.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.invitation-gate__button {
+.invitation-gate__stage {
   position: relative;
-  width: min(calc(100% - 70px), 590px);
-  min-height: min(70svh, 650px);
-  padding: 56px 32px;
+  z-index: 2;
+  width: min(92vw, 870px);
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: gate-arrive 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.invitation-gate__envelope {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 34px rgba(20, 25, 18, 0.34));
+  pointer-events: none;
+  transition: transform 1.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 600ms ease 480ms;
+}
+
+.invitation-gate__card {
+  position: absolute;
+  z-index: 3;
+  top: 29%;
+  left: 50%;
+  width: 62%;
+  height: 31%;
+  padding: clamp(10px, 2vw, 22px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(221, 199, 143, 0.82);
-  outline: 8px solid rgba(48, 56, 42, 0.58);
-  background: rgba(255, 253, 246, 0.93);
-  box-shadow: 0 28px 80px rgba(20, 25, 18, 0.42);
+  transform: translateX(-50%);
+  border: 0;
+  background: rgba(255, 253, 246, 0.97);
   color: var(--olive-deep);
   cursor: pointer;
-  animation: gate-arrive 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  transition: opacity 420ms ease, transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    transform 1.25s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 480ms ease 770ms,
+    box-shadow 220ms ease;
 }
 
-.invitation-gate__button::before {
+.invitation-gate__card::before {
   position: absolute;
-  inset: 11px;
-  border: 1px solid rgba(89, 100, 75, 0.26);
+  inset: 5px;
+  border: 1px solid rgba(183, 148, 85, 0.68);
   content: "";
   pointer-events: none;
 }
 
-.invitation-gate__button:focus-visible {
-  box-shadow: 0 0 0 4px var(--gold-light), 0 28px 80px rgba(20, 25, 18, 0.42);
+.invitation-gate__card:hover,
+.invitation-gate__card:focus-visible {
+  box-shadow: 0 0 0 4px rgba(221, 199, 143, 0.5);
+  outline: none;
 }
 
 .invitation-gate__eyebrow {
   font-family: var(--font-copy);
-  font-size: clamp(1.35rem, 3.5vw, 1.8rem);
+  font-size: clamp(0.95rem, 2.5vw, 1.5rem);
   color: var(--gold-deep);
-}
-
-.invitation-gate__ornament {
-  margin: 16px 0 10px;
-  font-size: 0.7rem;
-  color: var(--gold);
 }
 
 .invitation-gate__names {
@@ -154,9 +165,9 @@ a { color: inherit; }
   align-items: center;
   direction: rtl;
   font-family: var(--font-display);
-  font-size: clamp(4.5rem, 15vw, 8rem);
+  font-size: clamp(2.5rem, 8vw, 5.4rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1;
   white-space: nowrap;
 }
 
@@ -173,29 +184,31 @@ a { color: inherit; }
 }
 
 .invitation-gate__open {
-  margin-top: 30px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid rgba(183, 148, 85, 0.68);
+  margin-top: 7px;
   font-family: var(--font-ui);
-  font-size: 0.74rem;
+  font-size: clamp(0.55rem, 1.35vw, 0.72rem);
   color: var(--olive);
 }
 
-.invitation-gate.is-opening .invitation-gate__panel--left { transform: translateX(-101%); }
-.invitation-gate.is-opening .invitation-gate__panel--right { transform: translateX(101%); }
-
-.invitation-gate.is-opening .invitation-gate__button {
+.invitation-gate.is-opening .invitation-gate__card {
   opacity: 0;
-  transform: scale(0.94);
+  transform: translate(-50%, -72vh) scale(1.08);
+}
+
+.invitation-gate.is-opening .invitation-gate__envelope {
+  opacity: 0;
+  transform: translateY(38vh) scale(0.88);
 }
 
 .invitation-gate.is-opening .invitation-gate__botanical {
   opacity: 0;
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
 .invitation-gate.is-opening::before,
 .invitation-gate.is-opening::after { opacity: 0; }
+
+.invitation-gate.is-opening { background: transparent; }
 
 .hero {
   position: relative;
@@ -664,6 +677,7 @@ footer time {
   font-size: 0.68rem;
   letter-spacing: 0.24em;
   color: var(--gold-light);
+  text-align: center;
 }
 
 .footer__mark {
@@ -702,14 +716,10 @@ footer time {
 @media (max-width: 660px) {
   .invitation-gate::before { inset: 10px; }
   .invitation-gate::after { inset: 16px; }
-  .invitation-gate__botanical { opacity: 0.42; }
-  .invitation-gate__button {
-    width: calc(100% - 54px);
-    min-height: min(74svh, 590px);
-    padding-inline: 22px;
-    outline-width: 5px;
-  }
-  .invitation-gate__names { font-size: clamp(3.55rem, 19vw, 5.6rem); }
+  .invitation-gate__botanical { opacity: 0.22; }
+  .invitation-gate__stage { width: 108vw; }
+  .invitation-gate__card { top: 29.5%; width: 62%; height: 31%; }
+  .invitation-gate__names { font-size: clamp(2.35rem, 12vw, 4rem); }
 
   .hero { padding: 25px 18px; }
   .hero::before { inset: 8px; }
@@ -746,7 +756,8 @@ footer time {
   }
   .hero__scroll-arrow { animation: none; }
   .map-button { transition: none; }
-  .invitation-gate__button { animation: none; transition: none; }
-  .invitation-gate__panel,
+  .invitation-gate__stage { animation: none; }
+  .invitation-gate__card,
+  .invitation-gate__envelope,
   .invitation-gate__botanical { transition-duration: 1ms; }
 }
