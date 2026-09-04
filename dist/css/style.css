@@ -184,7 +184,7 @@ a { color: inherit; }
 }
 
 .invitation-gate__open {
-  margin-top: 7px;
+  margin-top: clamp(13px, 2.2vw, 20px);
   font-family: var(--font-ui);
   font-size: clamp(0.55rem, 1.35vw, 0.72rem);
   color: var(--olive);
@@ -743,7 +743,7 @@ footer time {
     line-height: 0.95;
   }
   .invitation-gate__open {
-    margin-top: 3px;
+    margin-top: clamp(11px, 3vw, 16px);
     font-size: clamp(0.5rem, 2.25vw, 0.66rem);
     line-height: 1.35;
     white-space: nowrap;
