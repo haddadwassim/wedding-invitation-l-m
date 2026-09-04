@@ -369,7 +369,7 @@ a { color: inherit; }
 .hero__invitation { margin-top: 2px; }
 
 .hero__names {
-  margin: 14px 0 8px;
+  margin: 24px 0 30px;
   width: min(100%, 680px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -717,9 +717,28 @@ footer time {
   .invitation-gate::before { inset: 10px; }
   .invitation-gate::after { inset: 16px; }
   .invitation-gate__botanical { opacity: 0.22; }
-  .invitation-gate__stage { width: 108vw; }
+  .invitation-gate__stage {
+    left: auto;
+    width: min(94vw, 620px);
+    max-width: 94vw;
+    margin-inline: auto;
+    transform: none;
+  }
+  .invitation-gate__envelope {
+    inset: auto;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    transform: translateX(-50%);
+  }
+  .invitation-gate.is-opening .invitation-gate__envelope {
+    transform: translate(-50%, 38vh) scale(0.88);
+  }
   .invitation-gate__card { top: 29.5%; width: 62%; height: 31%; }
-  .invitation-gate__names { font-size: clamp(2.35rem, 12vw, 4rem); }
+  .invitation-gate__names { font-size: clamp(2.05rem, 10.5vw, 3.6rem); }
 
   .hero { padding: 25px 18px; }
   .hero::before { inset: 8px; }
@@ -736,7 +755,11 @@ footer time {
   .invitation-card__corner { width: 36px; height: 36px; }
   .invitation-card__corner--top { top: 15px; right: 15px; }
   .invitation-card__corner--bottom { bottom: 15px; left: 15px; }
-  .hero__names { font-size: clamp(4rem, 19vw, 6rem); }
+  .hero__names {
+    margin-top: 20px;
+    margin-bottom: 28px;
+    font-size: clamp(4rem, 19vw, 6rem);
+  }
 
   .details { padding-inline: 18px; }
   .details::before { inset: 13px; }
