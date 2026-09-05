@@ -383,7 +383,11 @@ a { color: inherit; }
   white-space: nowrap;
 }
 
-.hero__name--lina { text-align: left; }
+.hero__name--lina {
+  text-align: left;
+  transform: scaleX(1.14);
+  transform-origin: left center;
+}
 .hero__name--malek { text-align: right; }
 
 .hero__heart {
