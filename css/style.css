@@ -369,16 +369,16 @@ a { color: inherit; }
 .hero__invitation { margin-top: 2px; }
 
 .hero__names {
-  margin: 24px 0 30px;
+  margin: 22px 0;
   width: min(100%, 680px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   direction: rtl;
-  font-family: "Gulzar", var(--font-display);
+  font-family: var(--font-display);
   font-size: clamp(4.8rem, 14vw, 8.4rem);
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.05;
   color: var(--olive-deep);
   white-space: nowrap;
 }
@@ -387,7 +387,7 @@ a { color: inherit; }
 .hero__name--malek { text-align: right; }
 
 .hero__heart {
-  padding: 0 clamp(8px, 2.4vw, 20px);
+  padding: 0 clamp(16px, 3.6vw, 32px);
   font-family: Georgia, serif;
   font-size: 0.42em;
   font-weight: 400;
@@ -765,8 +765,7 @@ footer time {
   .invitation-card__corner--top { top: 15px; right: 15px; }
   .invitation-card__corner--bottom { bottom: 15px; left: 15px; }
   .hero__names {
-    margin-top: 20px;
-    margin-bottom: 28px;
+    margin-block: 22px;
     font-size: clamp(4rem, 19vw, 6rem);
   }
 
