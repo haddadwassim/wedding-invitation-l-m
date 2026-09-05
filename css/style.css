@@ -375,10 +375,10 @@ a { color: inherit; }
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   direction: rtl;
-  font-family: var(--font-display);
+  font-family: "Gulzar", var(--font-display);
   font-size: clamp(4.8rem, 14vw, 8.4rem);
-  font-weight: 700;
-  line-height: 1.05;
+  font-weight: 400;
+  line-height: 1.1;
   color: var(--olive-deep);
   white-space: nowrap;
 }
