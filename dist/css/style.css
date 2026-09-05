@@ -749,16 +749,13 @@ footer time {
     white-space: nowrap;
   }
 
-  .hero {
-    min-height: auto;
-    padding: 18px 18px 46px;
-  }
+  .hero { padding: 25px 18px; }
   .hero::before { inset: 8px; }
   .hero::after { inset: 13px; }
   .hero__botanical { opacity: 0.47; }
 
   .invitation-card {
-    min-height: calc(88svh - 36px);
+    min-height: calc(100svh - 50px);
     padding: 46px 28px 40px;
     box-shadow: 0 0 0 5px rgba(63, 73, 53, 0.78), 0 0 0 6px rgba(221, 199, 143, 0.36), 0 24px 55px rgba(23, 29, 20, 0.32);
   }
