@@ -369,7 +369,7 @@ a { color: inherit; }
 .hero__invitation { margin-top: 2px; }
 
 .hero__names {
-  margin: 22px 0;
+  margin: 16px 0 28px;
   width: min(100%, 680px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -379,7 +379,7 @@ a { color: inherit; }
   font-size: clamp(4.8rem, 14vw, 8.4rem);
   font-weight: 400;
   line-height: 1.05;
-  color: var(--olive-deep);
+  color: color-mix(in srgb, var(--olive-deep) 84%, var(--ivory));
   white-space: nowrap;
 }
 
@@ -749,13 +749,16 @@ footer time {
     white-space: nowrap;
   }
 
-  .hero { padding: 25px 18px; }
+  .hero {
+    min-height: auto;
+    padding: 18px 18px 46px;
+  }
   .hero::before { inset: 8px; }
   .hero::after { inset: 13px; }
   .hero__botanical { opacity: 0.47; }
 
   .invitation-card {
-    min-height: calc(100svh - 50px);
+    min-height: calc(88svh - 36px);
     padding: 46px 28px 40px;
     box-shadow: 0 0 0 5px rgba(63, 73, 53, 0.78), 0 0 0 6px rgba(221, 199, 143, 0.36), 0 24px 55px rgba(23, 29, 20, 0.32);
   }
@@ -765,7 +768,7 @@ footer time {
   .invitation-card__corner--top { top: 15px; right: 15px; }
   .invitation-card__corner--bottom { bottom: 15px; left: 15px; }
   .hero__names {
-    margin-block: 22px;
+    margin: 16px 0 28px;
     font-size: clamp(4rem, 19vw, 6rem);
   }
 
