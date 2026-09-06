@@ -368,6 +368,8 @@ a { color: inherit; }
 
 .hero__invitation { margin-top: 2px; }
 
+.hero__family { font-weight: 700; }
+
 .hero__names {
   margin: 16px 0 28px;
   width: min(100%, 680px);
